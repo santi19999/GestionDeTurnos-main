@@ -28,12 +28,8 @@ const Formulario = ({ agregarDepositos }) => {
 		e.preventDefault();
 
 		/* Checking if the input is empty or if the input is 0. */
-		if (
-			deposito.montoDelDeposito === '' ||
-			deposito.montoDelDeposito === undefined ||
-			deposito.montoDelDeposito === NaN
-		) {
-			mostrarMensajes(e, 0, 'No deje el campo Monto vacío', 'Error!', 'error');
+		if (deposito.montoDelDeposito === '' || deposito.nombreBombero === '') {
+			mostrarMensajes(e, 0, 'No deje el campo  vacío', 'Error!', 'error');
 			return;
 		} else if (deposito.montoDelDeposito === 0) {
 			mostrarMensajes(
@@ -53,7 +49,6 @@ const Formulario = ({ agregarDepositos }) => {
 			description: description,
 			id: uuidv4(),
 		});
-		console.log(deposito);
 		mostrarMensajes(e, 0, 'Depósito Agregado', 'Éxito', 'success');
 		setDeposito(initialState);
 	};
@@ -62,16 +57,14 @@ const Formulario = ({ agregarDepositos }) => {
 		deposito;
 	return (
 		<>
-			<form onSubmit={handleSubmit} className="container">
+			<form onSubmit={handleSubmit} className="mt-4 bg-gradient-warning">
 				<select
 					name="nombreBombero"
-					className="form-control mb-2"
+					className="form-select mb-2"
 					value={nombreBombero}
 					onChange={handleChange}
 				>
-					<option selected="selected disabled hidden">
-						Seleccione un Nombre
-					</option>
+					<option defaultValue={nombreBombero}>Seleccione un Nombre</option>
 					<option value="Benjamín">Benjamín</option>
 					<option value="Nicolás">Nicolás</option>
 					<option value="Wilmer">Wilmer</option>
@@ -85,7 +78,9 @@ const Formulario = ({ agregarDepositos }) => {
 					placeholder="Ingrese el Monto del Depósito"
 					value={montoDelDeposito}
 					onChange={handleChange}
+					pattern="^[0-9,$]*$"
 				/>
+
 				<textarea
 					className="form-control mb-2"
 					name="description"

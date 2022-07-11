@@ -8,7 +8,7 @@ const Deposito = ({ deposito, eliminarDeposito }) => {
 			<tr>
 				<th>{fechaDelDeposito}</th>
 				<th>{nombreBombero}</th>
-				<th>${montoDelDeposito}</th>
+				<th>$ {montoDelDeposito}</th>
 				<th>{description}</th>
 				<th>
 					<Button color="danger" onClick={() => eliminarDeposito(id)}>

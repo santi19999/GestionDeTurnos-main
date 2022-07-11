@@ -1,7 +1,11 @@
-import '../styles/globals.css'
-
+import '../styles/globals.css';
+import { TurnosProvider } from '../context/turnoContext';
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+	return (
+		<TurnosProvider>
+			<Component {...pageProps} />
+		</TurnosProvider>
+	);
 }
 
-export default MyApp
+export default MyApp;
